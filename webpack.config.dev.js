@@ -1,16 +1,25 @@
 import path from 'path';
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
-  devtool: 'source-map',
+	devtool: 'source-map',
+	mode: 'development',
   entry: path.resolve(__dirname, 'src/index'),
 	output: {
-    path: path.resolve(__dirname, 'src'),
+		path: path.resolve(__dirname, 'src'),
+		//publicPatch: '/',
     filename: 'bundle.js'
 	},
+	target: "web",
 	devServer: {
     contentBase: './buildScripts'
-  },
+	},
+	plugins: [
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		})
+	],
   module: {
 		rules: [
 			{
